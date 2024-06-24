@@ -10,7 +10,7 @@
 	<a:choose>
 		<a:when test="${not empty authUser}">
 			<ul>
-				<li><a href="<c:url value="/users?a=logout" />">로그아웃</a></li>
+				<li><a href="<a:url value="/users?a=logout" />">로그아웃</a></li>
 				<li>${authUser.name}님,환영합니다.</li>
 				<br>
 				<!-- 로그인 한 사용자 -->
