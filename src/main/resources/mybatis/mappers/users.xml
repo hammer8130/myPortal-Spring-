@@ -8,7 +8,7 @@
 		SELECT seq_users_pk.nextval FROM dual
 		</selectKey>
 		INSERT INTO USERS (no,name,password,email,gender)
-		VALUES(#{no}, #{name}, #{password}, #{eSmail}, #{gender} )
+		VALUES(#{no}, #{name}, #{password}, #{email}, #{gender} )
 	</insert>
 
 	<!-- Email 정보로 사용자 정보 Select -->

@@ -10,7 +10,7 @@
 	<a:choose>
 		<a:when test="${not empty authUser}">
 			<ul>
-				<li><a href="<a:url value="/users?a=logout" />">로그아웃</a></li>
+				<li><a href="<a:url value="/users/logout" />">로그아웃</a></li>
 				<li>${authUser.name}님,환영합니다.</li>
 				<br>
 				<!-- 로그인 한 사용자 -->
@@ -27,8 +27,8 @@
 				<li><a href="<%=request.getContextPath()%>/users?a=loginform">로그인</a></li>
 				-->
 				
-				<li><a href="<a:url value="/users?a=joinform" />">회원가입</a></li>
-				<li><a href="<a:url value="/users?a=loginform" />">로그인</a></li>
+				<li><a href="<a:url value="/users/join" />">회원가입</a></li>
+				<li><a href="<a:url value="/users/login" />">로그인</a></li>
 			</ul>
 		</a:otherwise>
 	</a:choose>
