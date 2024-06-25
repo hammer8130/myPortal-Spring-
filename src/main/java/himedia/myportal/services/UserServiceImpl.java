@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserVO getUser(String email) {
-		return null;
+		UserVO userVo = userDAO.selectUser(email);
+		System.out.println("Service UserVo: "+userVo);
+		return userVo;
 	}
 
 	@Override

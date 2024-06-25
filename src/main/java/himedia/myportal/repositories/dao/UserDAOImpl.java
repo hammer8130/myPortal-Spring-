@@ -27,7 +27,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO selectUser(String email) {
-		return null;
+//		전달받은 파라미터를 UserVo로 리턴
+//		mappers -> users.xml의 쿼리 실행
+		UserVO userVo = sqlSession.selectOne("users.selectUserByEmail", email);
+		System.out.println("Dao UserVo: "+userVo);
+		return userVo;
 	}
 
 	@Override
