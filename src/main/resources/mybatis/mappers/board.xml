@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 안쪽 쿼리 객체를 관리하기 위한 이름 공간: namespace -->
+<mapper namespace="board">
+	<!-- 게시물 작성 -->
+	<insert id="insert" parameterType="BoardVO">
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			SELECT seq_board_pk.nextval from dual
+		</selectKey>
+		INSERT INTO board (no,title,content,hit,reg_date,user_no)
+		VALUES(#{no},#{title}, #{content}, 0,SYSDATE,#{userNo} )
+	</insert>
+	
+	<!-- 목록 -->
+	<select id="selectAll" resultType="BoardVO">
+		SELECT b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo
+				,u.name as userName
+		FROM board b, users u
+		WHERE b.user_no = u.no
+		ORDER BY b.reg_date DESC
+	</select>
+	
+	<!-- 게시물 읽기 -->
+	<select id="getContent" parameterType="long" resultType="BoardVO">
+	SELECT b.no, b.title, b.content, b.hit, b.reg_date as regDate, b.user_no as userNo,
+			u.name as userName
+	FROM board b, users u
+	WHERE b.user_no = u.no AND
+		b.no=#{value}
+	</select>
+	
+	<!-- 조회수 증가를 위한 쿼리 -->
+	<update id="increaseHitCount" parameterType="long">
+	<!-- board의 no와 전달받은 파라미터가 일치한다는 조건 -->
+		UPDATE board
+		SET hit = hit + 1
+		WHERE no=#{value}
+	</update>
+	
+	<!-- 게시물 수정 -->
+	<update id="update" parameterType="BoardVO">
+	UPDATE board
+	SET title=#{title}, content=#{content}
+	WHERE no = #{no}
+	</update>
+	
+	<!-- 게시물 삭제 
+	게시물 pk와 작성자 번호를 알아야 삭제가 되겠지
+	-->
+	<delete id="delete" parameterType="map">
+	DELETE FROM BOARD
+	WHERE no = #{no} AND user_no = #{userNo}
+	</delete>
+</mapper>

@@ -8,14 +8,17 @@
 		<typeAlias
 			type="himedia.myportal.repositories.vo.GuestbookVO"
 			alias="GuestbookVO" />
-		<typeAlias 
-			type="himedia.myportal.repositories.vo.UserVO"
+		<typeAlias type="himedia.myportal.repositories.vo.UserVO"
 			alias="UserVO" />
+		<typeAlias type="himedia.myportal.repositories.vo.BoardVO"
+			alias="BoardVO" />
+
 	</typeAliases>
 	<!-- 테이블 정보와 객체 정보 매핑을 위한 매퍼 -->
 	<mappers>
 		<mapper resource="/mybatis/mappers/guestbook.xml" />
 		<mapper resource="/mybatis/mappers/users.xml" />
+		<mapper resource="/mybatis/mappers/board.xml" />
 	</mappers>
 
 </configuration>

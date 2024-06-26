@@ -27,4 +27,6 @@
 		DELETE FROM guestbook
 		WHERE no = #{no} AND password = #{password}
 	</delete>
+	
+	<update id="update"></update>
 </mapper>
