@@ -44,6 +44,7 @@
 	<!-- Mybatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 참조값으로 oracledatasource를 참조시킴 -->
 		<property name="dataSource" ref="oracleDataSource" />
 		<property name="configLocation"
 			value="classpath:/mybatis/configuration.xml" />

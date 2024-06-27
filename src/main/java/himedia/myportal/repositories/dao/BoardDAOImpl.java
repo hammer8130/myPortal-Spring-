@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,32 +15,42 @@ import himedia.myportal.repositories.vo.BoardVO;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO{
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override
 	public List<BoardVO> selectAll() {
-		
 		List<BoardVO> list = sqlSession.selectList("board.selectAll");
+		
+		logger.debug(list.toString());
 		return list;
 	}
 
 	@Override
 	public int insert(BoardVO boardVo) {
+		logger.debug("게시물 작성 액션!!");
+		logger.debug("boardVo:"+boardVo);
+		
 //		게시물 작성 메서드
 		try {
 			int insertedCount=sqlSession.insert("board.insert",boardVo);
+			logger.debug("삽입된 레코드 수:"+insertedCount);
 			return insertedCount;
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error("게시물 입력 중 예외 발생");
 			throw new BoardDAOException("게시글 등록중 예외 발생!",boardVo);
 		}
 	}
 
 	@Override
 	public BoardVO getcontent(Long no) {
+		logger.debug("게시물 no:"+no);
+		
 		BoardVO boardVO = sqlSession.selectOne("board.getContent",no);
+		logger.debug("게시물 vo:"+boardVO);
 		return boardVO;
 	}
 

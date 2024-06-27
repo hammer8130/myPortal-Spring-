@@ -6,9 +6,11 @@
   <packaging>war</packaging>
   <name>myportal</name>
   <description>저자 정우찬</description>
+  
   <properties>
 	  <springframework-version>6.1.9</springframework-version>
   </properties>
+  
   <build>
     <plugins>		
       <plugin>
@@ -30,6 +32,13 @@
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
 	    <version>${springframework-version}</version>
+	    <!-- Logger 교체를 위한 기존 Logger 제거 -->
+	    <exclusions>
+			<exclusion>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+			</exclusion>
+		</exclusions>
 	</dependency>
 
 	<!--Spring Web-->
@@ -106,6 +115,20 @@
 	    <version>2.17.1</version>
 	</dependency>
 	
+	<!-- JCL over SLF4J -->
+	<dependency>
+   		 <groupId>org.slf4j</groupId>
+   		 <artifactId>jcl-over-slf4j</artifactId>
+  		 <version>2.0.13</version>
+	</dependency>
+	
+	<!-- Logback -->
+	<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.5.6</version>
+</dependency>
+
     </dependencies>
   	
   	
