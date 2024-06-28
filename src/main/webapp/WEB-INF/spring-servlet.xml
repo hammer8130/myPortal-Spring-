@@ -55,6 +55,32 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
+	
+	<!-- 특정 설정 자체를 외부에서 부여해준다. -->
+	<!-- 외부설정으로부터 필요한 요소들을 inject
+		interceptor에선 spring 내부 bean에 접근이 가능하다.
+	 -->
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/board/**"/>
+			<bean class="himedia.myportal.interceptors.MyInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**"/>
+			<bean class="himedia.myportal.interceptors.MyInterceptor2"/>
+		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**"/>
+			<!-- 특정 URL을 배제할 때 
+					interceptor 적용 시키지 마라 -->
+			<mvc:exclude-mapping path="/board"/>
+			<mvc:exclude-mapping path="/board/"/>
+			<mvc:exclude-mapping path="/board/list/**"/>
+			<!-- 게시물 조회시 interceptor 작동. /users/login으로 보내준다. -->
+			<bean class="himedia.myportal.interceptors.AuthInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>
     

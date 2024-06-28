@@ -24,11 +24,11 @@
 		
 		<!-- RollingPolicy -->
 		<!-- FixedWindowRollingPolicy -->
-		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		<!-- <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 			<fileNamePattern>\log-myportal\myportal.%{i}.log</fileNamePattern>
 			<minIndex>1</minIndex>
 			<maxIndex>10</maxIndex>
-		</rollingPolicy><!-- myportal.1.log ~ myportal.10.log 유지 -->
+		</rollingPolicy> --><!-- myportal.1.log ~ myportal.10.log 유지 -->
 		
 		
 		<!-- TimeBasedRollingPolicy 
@@ -41,12 +41,12 @@
 		
 		<!-- SizeAndTimeBasedRollingPolicy
 			: triggeringPolicy는 없음 -->
-		<!-- <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+		 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>\log-myportal\myportal.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			10MB가 넘거나 30일이 넘었을 때 파일 생성
 			<maxFileSize>10MB</maxFileSize>
 			<maxHistory>30</maxHistory>
-		</rollingPolicy> -->
+		</rollingPolicy> 
 		
 		
 		<!-- TriggeringPolicy -->
